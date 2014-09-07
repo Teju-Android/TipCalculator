@@ -4,5 +4,11 @@
     <string name="app_name">TipCalculator</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="amountLabel">Amount is</string>
+    <string name="amountHintLabel">Amount is</string>
+    <string name="tenPercentLabel">10%</string>
+    <string name="fifteenPercentLabel">15%</string>
+    <string name="twentyPercentLabel">20%</string>
+    <string name="resultLabel">"Tip is "</string>
 
 </resources>

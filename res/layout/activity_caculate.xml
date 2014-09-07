@@ -8,53 +8,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".CalculateActivity" >
 
-    <TextView
-        android:id="@+id/tvAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/etAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/tvAmount"
-        android:ems="10"
-        android:inputType="numberDecimal" >
-
-        <requestFocus />
-    </EditText>
-
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/but10Percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:text="Button" />
+        android:onClick="onClick10Percent"
+        android:text="@string/tenPercentLabel" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/but15Percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
+        android:layout_alignBaseline="@+id/but10Percent"
+        android:layout_alignBottom="@+id/but10Percent"
         android:layout_centerHorizontal="true"
-        android:text="Button" />
+        android:onClick="onClick15Percent"
+        android:text="@string/fifteenPercentLabel" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/but20Percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_alignBaseline="@+id/but15Percent"
+        android:layout_alignBottom="@+id/but15Percent"
         android:layout_alignParentRight="true"
-        android:text="Button" />
+        android:onClick="onClick20Percent"
+        android:text="@string/twentyPercentLabel" />
 
     <TextView
         android:id="@+id/tvResult"
@@ -62,7 +43,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="@string/resultLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="@string/amountHintLabel"
+        android:inputType="numberDecimal" />
 
 </RelativeLayout>

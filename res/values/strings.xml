@@ -9,6 +9,7 @@
     <string name="tenPercentLabel">10%</string>
     <string name="fifteenPercentLabel">15%</string>
     <string name="twentyPercentLabel">20%</string>
-    <string name="resultLabel">"Tip is "</string>
+    <string name="resultLabel">""</string>
+    <string name="percentLabel">%</string>
 
 </resources>

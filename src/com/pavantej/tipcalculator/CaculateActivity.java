@@ -2,8 +2,11 @@ package com.pavantej.tipcalculator;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 public class CaculateActivity extends Activity {
 
 	EditText etAmount;
+	EditText etCustom;
 	TextView tvResult;
 	Button bt10Percent;
 	Button bt15Percent;
@@ -25,6 +29,27 @@ public class CaculateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caculate);
         setActivity();
+        
+        etAmount.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+            	if(!isAmountNull()){
+            		calculateTip();
+            	}
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+        
+        etCustom.setOnFocusChangeListener(new OnFocusChangeListener() {
+        	public void onFocusChange(View view, boolean gainFocus) {
+        		if (gainFocus){
+        			resetButtons();
+        			((EditText) view).setBackgroundResource(R.drawable.button_true);
+        		}
+        		else 
+        			((EditText) view).setBackgroundResource(R.drawable.button_false);
+        	}
+       	});
     }
 
     @Override
@@ -36,30 +61,69 @@ public class CaculateActivity extends Activity {
     
     void setActivity(){
     	etAmount = (EditText) findViewById(R.id.etAmount);
+    	etCustom = (EditText) findViewById(R.id.etCustomTip);
     	tvResult = (TextView) findViewById(R.id.tvResult);
     	bt10Percent = (Button) findViewById(R.id.but10Percent);
     	bt15Percent = (Button) findViewById(R.id.but15Percent);
     	bt20Percent = (Button) findViewById(R.id.but20Percent);
+    	tipPercent = 0.10;
+    	setImageButtons();
     	//tvResult.setVisibility(View.INVISIBLE);
     }
     
-    void calculateTip(){
-    	double tip = amount*tipPercent;
-    	result = "Tip is ";
-    	result += tip;
-    	displayResult();
+    public void onClick10Percent(View v){
+    	tipPercent = 0.1;
+    	setImageButtons();
+    	calculateTip();
     }
     
-    void displayResult(){
-    	tvResult.setText(result);
-    	tvResult.setVisibility(View.VISIBLE);
+    public void onClick15Percent(View v){
+    	tipPercent = 0.15;
+        setImageButtons();
+        calculateTip();
+    }
+    
+    public void onClick20Percent(View v){
+    	tipPercent = 0.2;
+    	setImageButtons();
+    	calculateTip();
+    }
+    
+    void resetButtons(){
+    	bt10Percent.setBackgroundResource(R.drawable.button_false);
+    	bt15Percent.setBackgroundResource(R.drawable.button_false);
+    	bt20Percent.setBackgroundResource(R.drawable.button_false);	
+    }
+    
+    void setImageButtons(){
+    	resetButtons();
+    	etAmount.requestFocus();
+    	if(tipPercent == 0.10)
+    		bt10Percent.setBackgroundResource(R.drawable.button_true);
+    	else if(tipPercent == 0.15)
+    		bt15Percent.setBackgroundResource(R.drawable.button_true);
+    	else if(tipPercent == 0.20)
+    		bt20Percent.setBackgroundResource(R.drawable.button_true);
+    }
+    
+    void calculateTip(){
+    	if(!isAmountNull()){
+    		double tip = amount*tipPercent;
+        	result = "Tip is ";
+        	result += tip;
+        	displayResult(result);
+    	}
+    }
+    
+    void displayResult(String value){
+    	tvResult.setText(value);
     }
     
     boolean isAmountNull(){
     	String amt = etAmount.getText().toString();
     	if(amt.isEmpty()){
     		Toast.makeText(getBaseContext(), "No Amount Provided", Toast.LENGTH_SHORT).show();
-    		tvResult.setVisibility(View.INVISIBLE);
+    		displayResult("");
      		return true;
     	}
     	else{
@@ -68,24 +132,5 @@ public class CaculateActivity extends Activity {
     	}
     }
     
-    public void onClick10Percent(View v){
-    	if(!isAmountNull()){
-    		tipPercent = 0.1;
-    		calculateTip();
-    	}
-    }
     
-    public void onClick15Percent(View v){
-    	if(!isAmountNull()){
-    		tipPercent = 0.15;
-    		calculateTip();
-    	}
-    }
-    
-    public void onClick20Percent(View v){
-    	if(!isAmountNull()){
-    		tipPercent = 0.2;
-    		calculateTip();
-    	}
-    }
 }

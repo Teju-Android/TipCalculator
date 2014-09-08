@@ -43,6 +43,7 @@ public class CaculateActivity extends Activity {
         etAmount.setOnFocusChangeListener(new OnFocusChangeListener() {
         	public void onFocusChange(View view, boolean gainFocus) {
         		if (gainFocus)
+        			((EditText) view).setSelection(etAmount.length());
         			setImageButtons();
         	}
        	});
@@ -91,6 +92,8 @@ public class CaculateActivity extends Activity {
     	bt20Percent = (Button) findViewById(R.id.but20Percent);
     	tipPercent = 0.10;
     	etCustom.setText("%");
+    	etAmount.setText("$");
+    	etAmount.setSelection(etAmount.length());
     	setImageButtons();
     	//tvResult.setVisibility(View.INVISIBLE);
     }
@@ -148,12 +151,13 @@ public class CaculateActivity extends Activity {
     
     boolean isAmountNull(){
     	String amt = etAmount.getText().toString();
-    	if(amt.isEmpty()){
+    	if(amt.isEmpty() || amt.equals("$")){
     		Toast.makeText(getBaseContext(), "No Amount Provided", Toast.LENGTH_SHORT).show();
     		displayResult("");
      		return true;
     	}
     	else{
+    		amt = amt.substring(1,amt.length());
     		amount = Double.parseDouble(amt);
     		return false;
     	}

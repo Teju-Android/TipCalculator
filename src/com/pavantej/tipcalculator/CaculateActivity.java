@@ -40,16 +40,39 @@ public class CaculateActivity extends Activity {
             public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
         
+        etAmount.setOnFocusChangeListener(new OnFocusChangeListener() {
+        	public void onFocusChange(View view, boolean gainFocus) {
+        		if (gainFocus)
+        			setImageButtons();
+        	}
+       	});
+        
         etCustom.setOnFocusChangeListener(new OnFocusChangeListener() {
         	public void onFocusChange(View view, boolean gainFocus) {
         		if (gainFocus){
-        			resetButtons();
+        			resetButtons();		
         			((EditText) view).setBackgroundResource(R.drawable.button_true);
+        			((EditText) view).setSelection(etCustom.length()-1);
+        			if(!isAmountNull() && !isTipNull()){
+                		calculateTip();
+                	}
+        			
         		}
-        		else 
-        			((EditText) view).setBackgroundResource(R.drawable.button_false);
+        
         	}
        	});
+        
+        etCustom.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+            	if(!isAmountNull() && !isTipNull()){
+            		calculateTip();
+            	}
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+        });
+        
+        
     }
 
     @Override
@@ -67,6 +90,7 @@ public class CaculateActivity extends Activity {
     	bt15Percent = (Button) findViewById(R.id.but15Percent);
     	bt20Percent = (Button) findViewById(R.id.but20Percent);
     	tipPercent = 0.10;
+    	etCustom.setText("%");
     	setImageButtons();
     	//tvResult.setVisibility(View.INVISIBLE);
     }
@@ -93,6 +117,7 @@ public class CaculateActivity extends Activity {
     	bt10Percent.setBackgroundResource(R.drawable.button_false);
     	bt15Percent.setBackgroundResource(R.drawable.button_false);
     	bt20Percent.setBackgroundResource(R.drawable.button_false);	
+    	etCustom.setBackgroundResource(R.drawable.button_false);
     }
     
     void setImageButtons(){
@@ -104,6 +129,8 @@ public class CaculateActivity extends Activity {
     		bt15Percent.setBackgroundResource(R.drawable.button_true);
     	else if(tipPercent == 0.20)
     		bt20Percent.setBackgroundResource(R.drawable.button_true);
+    	else
+    		etCustom.setBackgroundResource(R.drawable.button_true);
     }
     
     void calculateTip(){
@@ -128,6 +155,20 @@ public class CaculateActivity extends Activity {
     	}
     	else{
     		amount = Double.parseDouble(amt);
+    		return false;
+    	}
+    }
+    
+    boolean isTipNull(){
+    	String tip = etCustom.getText().toString();
+    	if(tip.isEmpty() || tip.equals("%")){
+    		Toast.makeText(getBaseContext(), "No Tip Provided", Toast.LENGTH_SHORT).show();
+    		displayResult("");
+     		return true;
+    	}
+    	else{
+    		tip = tip.substring(0,tip.length()-1);
+    		tipPercent = Double.parseDouble(tip)*0.01;
     		return false;
     	}
     }

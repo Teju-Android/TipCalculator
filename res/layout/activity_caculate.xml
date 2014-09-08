@@ -19,7 +19,13 @@
         android:text="@string/resultLabel"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:background="@drawable/result_view"/>
+        android:background="@drawable/result_view"
+        android:shadowColor="#DEDEDE"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:textColor="#000000"
+        android:textSize="30sp"/>
 
     <EditText
         android:id="@+id/etAmount"
@@ -28,9 +34,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:background="@drawable/result_view"
         android:ems="10"
+        android:gravity="center_vertical|center_horizontal"
         android:hint="@string/amountHintLabel"
-        android:inputType="numberDecimal" >
+        android:inputType="numberDecimal"
+        android:shadowColor="#DEDEDE"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:textColor="#000000"
+        android:textSize="30sp" >
+
         <requestFocus />
      </EditText> 
 
@@ -89,12 +104,13 @@
         android:layout_width="80dp"
         android:layout_height="150dp"
         android:layout_alignBottom="@+id/but20Percent"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/but10Percent"
         android:layout_toRightOf="@+id/but10Percent"
         android:background="@drawable/button_false"
         android:ems="10"
         android:gravity="center_vertical|center_horizontal"
-        android:inputType="number"
+        android:inputType="text"
         android:paddingLeft="50dp"
         android:paddingTop="0dp"
         android:shadowColor="#DEDEDE"
@@ -105,25 +121,5 @@
         android:textSize="30sp" >
 
     </EditText>
-
-    <TextView
-        android:id="@+id/tvPercent"
-        android:layout_width="65dp"
-        android:layout_height="150dp"
-        android:layout_alignBottom="@+id/etCustomTip"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/etCustomTip"
-        android:layout_toRightOf="@+id/etCustomTip"
-        android:background="@drawable/button_false"
-        android:paddingTop="55dp"
-        android:paddingLeft="20dp"
-        android:text="@string/percentLabel"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowColor="#DEDEDE"
-        android:shadowRadius="5"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

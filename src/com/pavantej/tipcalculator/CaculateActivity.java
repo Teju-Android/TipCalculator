@@ -43,7 +43,7 @@ public class CaculateActivity extends Activity {
         etAmount.setOnFocusChangeListener(new OnFocusChangeListener() {
         	public void onFocusChange(View view, boolean gainFocus) {
         		if (gainFocus)
-        			((EditText) view).setSelection(etAmount.length());
+        			//((EditText) view).setSelection(etAmount.length());
         			setImageButtons();
         	}
        	});
@@ -53,7 +53,7 @@ public class CaculateActivity extends Activity {
         		if (gainFocus){
         			resetButtons();		
         			((EditText) view).setBackgroundResource(R.drawable.button_true);
-        			((EditText) view).setSelection(etCustom.length()-1);
+        			//((EditText) view).setSelection(etCustom.length()-1);
         			if(!isAmountNull() && !isTipNull()){
                 		calculateTip();
                 	}

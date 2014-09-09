@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#fa8072"
     tools:context=".CalculateActivity" >
      
     <TextView
@@ -16,16 +17,17 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/but20Percent"
-        android:text="@string/resultLabel"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:background="@drawable/result_view"
+        android:gravity="center"
         android:shadowColor="#E3E3E3"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
+        android:text="@string/resultLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000000"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:typeface="serif" />
 
     <EditText
         android:id="@+id/etAmount"
@@ -44,7 +46,8 @@
         android:shadowDy="0"
         android:shadowRadius="5"
         android:textColor="#000000"
-        android:textSize="30sp" >
+        android:textSize="30sp"
+        android:typeface="serif" >
 
         <requestFocus />
      </EditText> 
@@ -52,7 +55,7 @@
     <Button
         android:id="@+id/but10Percent"
         android:layout_width="145dp"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/but20Percent"
         android:layout_below="@+id/etAmount"
@@ -64,12 +67,13 @@
         android:shadowRadius="5"
         android:text="@string/tenPercentLabel"
         android:textColor="#000000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:typeface="serif" />
 
     <Button
         android:id="@+id/but20Percent"
         android:layout_width="145dp"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/but10Percent"
         android:background="@drawable/button_false"
@@ -80,12 +84,13 @@
         android:shadowRadius="5"
         android:text="@string/twentyPercentLabel"
         android:textColor="#000000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:typeface="serif" />
 
     <Button
         android:id="@+id/but15Percent"
         android:layout_width="145dp"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/etAmount"
         android:layout_toRightOf="@+id/but10Percent"
@@ -97,12 +102,13 @@
         android:shadowRadius="5"
         android:text="@string/fifteenPercentLabel"
         android:textColor="#000000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:typeface="serif" />
 
     <EditText
         android:id="@+id/etCustomTip"
         android:layout_width="80dp"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_alignBottom="@+id/but20Percent"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/but10Percent"
@@ -118,7 +124,8 @@
         android:shadowDy="0"
         android:shadowRadius="5"
         android:textColor="#000000"
-        android:textSize="30sp" >
+        android:textSize="30sp"
+        android:typeface="serif" >
 
     </EditText>
 

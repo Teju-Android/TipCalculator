@@ -1,5 +1,6 @@
 package com.pavantej.tipcalculator;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +18,7 @@ public class CaculateActivity extends Activity {
 	EditText etAmount;
 	EditText etCustom;
 	TextView tvResult;
+	ActionBar actionBar;
 	Button bt10Percent;
 	Button bt15Percent;
 	Button bt20Percent;
@@ -29,8 +31,36 @@ public class CaculateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caculate);
         setActivity();
+        setListeners();
         
-        etAmount.addTextChangedListener(new TextWatcher(){
+        
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.caculate, menu);
+        return true;
+    }
+    
+    void setActivity(){
+    	etAmount = (EditText) findViewById(R.id.etAmount);
+    	etCustom = (EditText) findViewById(R.id.etCustomTip);
+    	tvResult = (TextView) findViewById(R.id.tvResult);
+    	bt10Percent = (Button) findViewById(R.id.but10Percent);
+    	bt15Percent = (Button) findViewById(R.id.but15Percent);
+    	bt20Percent = (Button) findViewById(R.id.but20Percent);
+    	tipPercent = 0.10;
+    	etCustom.setText("%");
+    	etAmount.setText("$");
+    	etAmount.setSelection(etAmount.length());
+    	setImageButtons();
+    	actionBar = getActionBar();
+    	actionBar.hide();
+    }
+    
+    void setListeners(){
+    	etAmount.addTextChangedListener(new TextWatcher(){
             public void afterTextChanged(Editable s) {
             	if(!isAmountNull()){
             		calculateTip();
@@ -73,29 +103,6 @@ public class CaculateActivity extends Activity {
             public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
         
-        
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.caculate, menu);
-        return true;
-    }
-    
-    void setActivity(){
-    	etAmount = (EditText) findViewById(R.id.etAmount);
-    	etCustom = (EditText) findViewById(R.id.etCustomTip);
-    	tvResult = (TextView) findViewById(R.id.tvResult);
-    	bt10Percent = (Button) findViewById(R.id.but10Percent);
-    	bt15Percent = (Button) findViewById(R.id.but15Percent);
-    	bt20Percent = (Button) findViewById(R.id.but20Percent);
-    	tipPercent = 0.10;
-    	etCustom.setText("%");
-    	etAmount.setText("$");
-    	etAmount.setSelection(etAmount.length());
-    	setImageButtons();
-    	//tvResult.setVisibility(View.INVISIBLE);
     }
     
     public void onClick10Percent(View v){
@@ -139,7 +146,9 @@ public class CaculateActivity extends Activity {
     void calculateTip(){
     	if(!isAmountNull()){
     		double tip = amount*tipPercent;
-        	result = "Tip is ";
+    		tip = Math.round(tip * 100);
+    		tip = tip/100;
+        	result = "Tip $";
         	result += tip;
         	displayResult(result);
     	}

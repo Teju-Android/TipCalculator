@@ -4,7 +4,7 @@
 		android:radius="40dp"
 	/>
 	<solid
-		android:color="#ADDBDB"
+		android:color="#f5deb3"
 	/>
 	<padding
 		android:left="0dp"
